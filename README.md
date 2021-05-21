@@ -1,7 +1,9 @@
 # Kmeans_playground
 根據AndrewNg Machine Learning K-means內容實作原理
 
-Note: https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes/blob/master/markdown/week8.md
+大神提供上課筆記: https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes/blob/master/markdown/week8.md
+
+我的筆記: https://yellowgirl3614.medium.com/andrew-ng-k-means-1db79e5ee255
 
 ### step 1: 自創一些數據(刻意分兩類)，num of feature = 2
 
