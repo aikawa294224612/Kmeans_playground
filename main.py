@@ -3,7 +3,13 @@ import random
 import math
 import method
 
-samples = [[1,1], [1,2], [2, 3], [3, 1], [4, 1], [4, 5], [6,9], [6,7], [7, 10], [8, 10], [8, 9], [10, 8]]
+samples = [[1,1], [1,2], [2, 3], [3, 1], [4, 1], [6,9], [6,7], [7, 10], [8, 10], [8, 9], [10, 8]]
+isfirst = True
+flag = True
+lastcent = []
+cluster1 = []
+cluster2 = []
+
 
 def kmeans(c1, c2):
     global cluster1
@@ -25,6 +31,7 @@ def kmeans(c1, c2):
             cluster2.append(s)
 
 
+
 method.paint(samples)
 
 lenth = len(samples)
@@ -36,16 +43,9 @@ while r1 == r2:
 
 centriod1 = samples[r1]
 centriod2 = samples[r2]
-
 print("initialization 1:", centriod1)
 print("initialization 2:", centriod2)
 
-cluster1 = []
-cluster2 = []
-
-isfirst = True
-flag = True
-lastcent = []
 
 while flag:
     if isfirst:
@@ -53,27 +53,14 @@ while flag:
         lastcent = centriod1
         isfirst = False
     else:
-        cluster1_x = []
-        cluster1_y = []
+        cluster1_x = [c[0] for c in cluster1]
+        cluster1_y = [c[1] for c in cluster1]
 
-        cluster2_x = []
-        cluster2_y = []
+        cluster2_x = [c[0] for c in cluster2]
+        cluster2_y = [c[1] for c in cluster2]
 
-        for x, y in cluster1:
-            cluster1_x.append(x)
-            cluster1_y.append(y)
-
-        for x, y in cluster2:
-            cluster2_x.append(x)
-            cluster2_y.append(y)
-
-        new_centriod1 = []
-        new_centriod2 = []
-
-        new_centriod1.append(sum(cluster1_x) / len(cluster1_x))
-        new_centriod1.append(sum(cluster1_y) / len(cluster1_y))
-        new_centriod2.append(sum(cluster2_x) / len(cluster2_x))
-        new_centriod2.append(sum(cluster2_y) / len(cluster2_y))
+        new_centriod1 = method.getnewcontroid(cluster1_x, cluster1_x)
+        new_centriod2 = method.getnewcontroid(cluster2_x, cluster2_x)
 
         print("new centroid 1:", new_centriod1)
         print("new centroid 2:", new_centriod2)
