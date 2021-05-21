@@ -60,44 +60,33 @@ print("initialization 2:", centriod2)
 
 ```python
 def kmeans(c1, c2):
-    global cluster1
-    global cluster2
-    
-    cluster1 = []
-    cluster2 = []
-    
+    clus1 = []
+    clus2 = []
+
     for s in samples:
-        distence_with_c1 = math.sqrt(((c1[0]-s[0])**2)+((c1[1]-s[1])**2))
-        distence_with_c2 = math.sqrt(((c2[0]-s[0])**2)+((c2[1]-s[1])**2))
+        distence_with_c1 = math.sqrt(((c1[0] - s[0]) ** 2) + ((c1[1] - s[1]) ** 2))
+        distence_with_c2 = math.sqrt(((c2[0] - s[0]) ** 2) + ((c2[1] - s[1]) ** 2))
 
         # python 3.8
         # math.dist(c1, s)
 
         if distence_with_c1 <= distence_with_c2:
-            cluster1.append(s)
+            clus1.append(s)
         else:
-            cluster2.append(s)
+            clus2.append(s)
+    return clus1, clus2
 ```
 
 ### step 4: 更新centroid為平均，然後iterate直到平均一樣
 
 
 ```python
-import math
-
-cluster1 = []
-cluster2 = []
-
-isfirst = True
-flag = True
-lastcent = []
-
 while flag:
     if isfirst:
-        kmeans(centriod1, centriod2)
+        cluster1, cluster2 = kmeans(centriod1, centriod2)
         lastcent = centriod1
         isfirst = False
-    else:               
+    else:
         cluster1_x = [c[0] for c in cluster1]
         cluster1_y = [c[1] for c in cluster1]
 
@@ -106,14 +95,14 @@ while flag:
 
         new_centriod1 = method.getnewcontroid(cluster1_x, cluster1_x)
         new_centriod2 = method.getnewcontroid(cluster2_x, cluster2_x)
-        
+
         print("new centroid 1:", new_centriod1)
         print("new centroid 2:", new_centriod2)
-        
+
         if set(lastcent) == set(new_centriod1):
             flag = False
-        
-        kmeans(new_centriod1, new_centriod2)
+
+        cluster1, cluster2 = kmeans(new_centriod1, new_centriod2)
         lastcent = new_centriod1
 ```
 
