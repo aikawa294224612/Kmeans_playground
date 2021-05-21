@@ -98,27 +98,14 @@ while flag:
         lastcent = centriod1
         isfirst = False
     else:               
-        new_centriod1 = []
-        new_centriod2 = []
-        
-        cluster1_x = []
-        cluster1_y = []
+        cluster1_x = [c[0] for c in cluster1]
+        cluster1_y = [c[1] for c in cluster1]
 
-        cluster2_x = []
-        cluster2_y = []
+        cluster2_x = [c[0] for c in cluster2]
+        cluster2_y = [c[1] for c in cluster2]
 
-        for x, y in cluster1:
-            cluster1_x.append(x)
-            cluster1_y.append(y)
-
-        for x, y in cluster2:
-            cluster2_x.append(x)
-            cluster2_y.append(y)
-                 
-        new_centriod1.append(sum(cluster1_x)/len(cluster1_x))
-        new_centriod1.append(sum(cluster1_y)/len(cluster1_y))
-        new_centriod2.append(sum(cluster2_x)/len(cluster2_x))
-        new_centriod2.append(sum(cluster2_y)/len(cluster2_y))
+        new_centriod1 = method.getnewcontroid(cluster1_x, cluster1_x)
+        new_centriod2 = method.getnewcontroid(cluster2_x, cluster2_x)
         
         print("new centroid 1:", new_centriod1)
         print("new centroid 2:", new_centriod2)
